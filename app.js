@@ -1,4 +1,4 @@
-import getNotes from "./notes.js";
+import notes from "./notes.js";
 import chalk from "chalk";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
@@ -7,8 +7,20 @@ const argv = yargs(hideBin(process.argv))
   .command({
     command: "add",
     describe: "Adds a new note",
-    handler: function () {
-      console.log("Adding a new note");
+    builder: {
+      title: {
+        describe: "Title of the note to be added",
+        demandOption: true,
+        type: "string",
+      },
+      body: {
+        describe: "Content of the note",
+        demandOption: false,
+        type: "string",
+      },
+    },
+    handler: function (argv) {
+      notes.addNote(argv.title, argv.body);
     },
   })
   .command({
