@@ -12,6 +12,27 @@ const argv = yargs(hideBin(process.argv))
     },
   })
   .command({
+    command: "list",
+    describe: "Lists all notes",
+    handler: function () {
+      console.log("All notes");
+    },
+  })
+  .command({
+    command: "read",
+    describe: "Reads a note",
+    builder: {
+      title: {
+        describe: "Title of the note to be read",
+        demandOption: true,
+        type: "string",
+      },
+    },
+    handler: function (argv) {
+      console.log(`Reading note: ${argv.title}`);
+    },
+  })
+  .command({
     command: "remove",
     describe: "Removes a note",
     builder: {
@@ -25,6 +46,3 @@ const argv = yargs(hideBin(process.argv))
       console.log(`Removing the note titled: ${argv.title}`);
     },
   }).argv;
-
-const msg = getNotes();
-console.log(chalk.green(msg));
