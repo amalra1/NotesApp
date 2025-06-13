@@ -55,6 +55,12 @@ const argv = yargs(hideBin(process.argv))
       },
     },
     handler: function (argv) {
-      console.log(`Removing the note titled: ${argv.title}`);
+      const result = notes.removeNote(argv.title);
+
+      if (result) {
+        console.log(chalk.bgGreen("Note removed!"));
+      } else {
+        console.log(chalk.red("Note not found."));
+      }
     },
   }).argv;
