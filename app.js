@@ -19,16 +19,12 @@ const argv = yargs(hideBin(process.argv))
         type: "string",
       },
     },
-    handler: function (argv) {
-      notes.addNote(argv.title, argv.body);
-    },
+    handler: (argv) => notes.addNote(argv.title, argv.body),
   })
   .command({
     command: "list",
     describe: "Lists all notes",
-    handler: function () {
-      console.log("All notes");
-    },
+    handler: () => notes.listNotes(),
   })
   .command({
     command: "read",
@@ -40,9 +36,7 @@ const argv = yargs(hideBin(process.argv))
         type: "string",
       },
     },
-    handler: function (argv) {
-      console.log(`Reading note: ${argv.title}`);
-    },
+    handler: (argv) => notes.readNote(argv.title),
   })
   .command({
     command: "remove",
@@ -54,7 +48,7 @@ const argv = yargs(hideBin(process.argv))
         type: "string",
       },
     },
-    handler: function (argv) {
+    handler: (argv) => {
       const result = notes.removeNote(argv.title);
 
       if (result) {
