@@ -10,6 +10,7 @@ function addNote(title, body) {
       title: title,
       body: body,
     });
+    console.log(chalk.bgGreen("Note added!"));
   } else {
     console.log("Note title already taken");
   }
@@ -35,8 +36,8 @@ function readNote(title) {
 
   if (note) {
     console.log(chalk.inverse("Your note..."));
-    console.log(title);
-    console.log(note.body);
+    console.log("Title:\n" + title + "\n");
+    console.log("Content:\n"+ note.body);
   }
 }
 
